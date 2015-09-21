@@ -1,30 +1,59 @@
-language: cpp
+language: c++
 os: linux
 sudo: false
+
 
 env:
   - compiler='g++-4.8' build_type='Debug'
   - compiler='g++-4.8' build_type='Release'
+
   - compiler='g++-4.9' build_type='Debug'
   - compiler='g++-4.9' build_type='Release'
+
   - compiler='g++-5' build_type='Debug'
   - compiler='g++-5' build_type='Release'
+
+  - compiler='clang++-3.5' build_type='Debug'
+  - compiler='clang++-3.5' build_type='Release'
+
+  - compiler='clang++-3.6' build_type='Debug'
+  - compiler='clang++-3.6' build_type='Release'
+
+  - compiler='clang++-3.7' build_type='Debug'
+  - compiler='clang++-3.7' build_type='Release'
+
+
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-3.5
+    - llvm-toolchain-precise-3.6
+    - llvm-toolchain-precise-3.7
     packages:
     - g++-4.8
     - g++-4.9
     - g++-5
+    - clang++-3.5
+    - clang++-3.6
+    - clang++-3.7
+
+
 install:
-  - cmake --version
-  - wget http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz
-  - tar -xzf cmake-3.3.2-Linux-x86_64.tar.gz
-  - export CC='gcc-4.8'
-  - export CXX=$compiler
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+
+  - CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
+  - mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+  - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+
+
+before_script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_CXX_COMPILER=$compiler -DCMAKE_BUILD_TYPE=$build_type
+
+
 script:
-  - mkdir $CXX && cd $CXX
-  - ../cmake-3.3.2-Linux-x86_64/bin/cmake -DCMAKE_BUILD_TYPE=$build_type ../
-  - ../cmake-3.3.2-Linux-x86_64/bin/cmake --build .
+  - cmake --build .
   - ./Main
