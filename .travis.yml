@@ -5,6 +5,8 @@ sudo: false
 cache: ccache
 
 matrix:
+  fast_finish: true
+
   exclude:
     - compiler: gcc
 
