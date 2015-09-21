@@ -2,6 +2,8 @@
 
 Travis CI integration for C++11 / C++14 projects. WIP.
 
+[![Build Status](https://travis-ci.org/daniel-j-h/cpp-travis-setup.svg)](https://travis-ci.org/daniel-j-h/cpp-travis-setup)
+
 ## License
 
 Copyright © 2015 Daniel J. Hofmann
