@@ -2,10 +2,8 @@ language: c++
 os: linux
 sudo: false
 
-
 matrix:
   include:
-
     # Clang 3.5, release / debug
     - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
       addons: &clang35
@@ -13,7 +11,10 @@ matrix:
           sources:
             - llvm-toolchain-precise-3.5
             - ubuntu-toolchain-r-test
-          packages: clang-3.5
+            - boost-latest
+          packages:
+            - clang-3.5
+            - libboost1.55-all-dev
 
     - env: COMPILER='clang++-3.5' BUILD_TYPE='Release'
       addons: *clang35
@@ -25,7 +26,10 @@ matrix:
           sources:
             - llvm-toolchain-precise-3.6
             - ubuntu-toolchain-r-test
-          packages: clang-3.6
+            - boost-latest
+          packages:
+            - clang-3.6
+            - libboost1.55-all-dev
 
     - env: COMPILER='clang++-3.6' BUILD_TYPE='Release'
       addons: *clang36
@@ -37,7 +41,10 @@ matrix:
           sources:
             - llvm-toolchain-precise-3.7
             - ubuntu-toolchain-r-test
-          packages: clang-3.7
+            - boost-latest
+          packages:
+            - clang-3.7
+            - libboost1.55-all-dev
 
     - env: COMPILER='clang++-3.7' BUILD_TYPE='Release'
       addons: *clang37
@@ -46,8 +53,12 @@ matrix:
     - env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
       addons: &gcc48
         apt:
-          sources: ubuntu-toolchain-r-test
-          packages: g++-4.8
+          sources:
+            - ubuntu-toolchain-r-test
+            - boost-latest
+         packages:
+            - g++-4.8
+            - libboost1.55-all-dev
 
     - env: COMPILER='g++-4.8' BUILD_TYPE='Release'
       addons: *gcc48
@@ -56,8 +67,12 @@ matrix:
     - env: COMPILER='g++-4.9' BUILD_TYPE='Debug'
       addons: &gcc49
         apt:
-          sources: ubuntu-toolchain-r-test
-          packages: g++-4.9
+          sources:
+            - ubuntu-toolchain-r-test
+            - boost-latest
+          packages:
+            - g++-4.9
+            - libboost1.55-all-dev
 
     - env: COMPILER='g++-4.9' BUILD_TYPE='Release'
       addons: *gcc49
@@ -66,12 +81,15 @@ matrix:
     - env: COMPILER='g++-5' BUILD_TYPE='Debug'
       addons: &gcc5
         apt:
-          sources: ubuntu-toolchain-r-test
-          packages: g++-5
+          sources:
+            - ubuntu-toolchain-r-test
+            - boost-latest
+          packages:
+            - g++-5
+            - libboost1.55-all-dev
 
     - env: COMPILER='g++-5' BUILD_TYPE='Release'
       addons: *gcc5
-
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -81,12 +99,10 @@ install:
   - mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
   - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
 
-
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
   - cmake .. -DCMAKE_CXX_COMPILER=${COMPILER} -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
-
 
 script:
   - cmake --build .
