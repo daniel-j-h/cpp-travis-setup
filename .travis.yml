@@ -5,7 +5,12 @@ sudo: false
 
 
 cache: ccache
-env: { global: { CCACHE_MAXSIZE=200M } }
+env:
+  global:
+    - USE_CCACHE=1
+    - CCACHE_COMPRESS=1
+    - CCACHE_MAXSIZE=200M
+    - CCACHE_CPP2=1
 
 
 matrix:
