@@ -3,40 +3,74 @@ os: linux
 sudo: false
 
 
-env:
-  - COMPILER='g++-4.8' BUILD_TYPE='Debug'
-  - COMPILER='g++-4.8' BUILD_TYPE='Release'
+matrix:
+  include:
 
-  - COMPILER='g++-4.9' BUILD_TYPE='Debug'
-  - COMPILER='g++-4.9' BUILD_TYPE='Release'
+    # Clang 3.5, release / debug
+    - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
+      addons: &clang35
+        apt:
+          sources:
+            - llvm-toolchain-precise-3.5
+            - ubuntu-toolchain-r-test
+          packages: clang-3.5
 
-  - COMPILER='g++-5' BUILD_TYPE='Debug'
-  - COMPILER='g++-5' BUILD_TYPE='Release'
+    - env: COMPILER='clang++-3.5' BUILD_TYPE='Release'
+      addons: *clang35
 
-  - COMPILER='clang++-3.5' BUILD_TYPE='Debug'
-  - COMPILER='clang++-3.5' BUILD_TYPE='Release'
+    # Clang 3.6, release / debug
+    - env: COMPILER='clang++-3.6' BUILD_TYPE='Debug'
+      addons: &clang36
+        apt:
+          sources:
+            - llvm-toolchain-precise-3.6
+            - ubuntu-toolchain-r-test
+          packages: clang-3.6
 
-  - COMPILER='clang++-3.6' BUILD_TYPE='Debug'
-  - COMPILER='clang++-3.6' BUILD_TYPE='Release'
+    - env: COMPILER='clang++-3.6' BUILD_TYPE='Release'
+      addons: *clang36
 
-  - COMPILER='clang++-3.7' BUILD_TYPE='Debug'
-  - COMPILER='clang++-3.7' BUILD_TYPE='Release'
+    # Clang 3.7, release / debug
+    - env: COMPILER='clang++-3.7' BUILD_TYPE='Debug'
+      addons: &clang37
+        apt:
+          sources:
+            - llvm-toolchain-precise-3.7
+            - ubuntu-toolchain-r-test
+          packages: clang-3.7
 
+    - env: COMPILER='clang++-3.7' BUILD_TYPE='Release'
+      addons: *clang37
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.5
-    - llvm-toolchain-precise-3.6
-    - llvm-toolchain-precise-3.7
-    packages:
-    - g++-4.8
-    - g++-4.9
-    - g++-5
-    - clang-3.5
-    - clang-3.6
-    - clang-3.7
+    # GCC 4.8, release / debug
+    - env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
+      addons: &gcc48
+        apt:
+          sources: ubuntu-toolchain-r-test
+          packages: g++-4.8
+
+    - env: COMPILER='g++-4.8' BUILD_TYPE='Release'
+      addons: *gcc48
+
+    # GCC 4.9, release / debug
+    - env: COMPILER='g++-4.9' BUILD_TYPE='Debug'
+      addons: &gcc49
+        apt:
+          sources: ubuntu-toolchain-r-test
+          packages: g++-4.9
+
+    - env: COMPILER='g++-4.9' BUILD_TYPE='Release'
+      addons: *gcc49
+
+    # GCC 5, release / debug
+    - env: COMPILER='g++-5' BUILD_TYPE='Debug'
+      addons: &gcc5
+        apt:
+          sources: ubuntu-toolchain-r-test
+          packages: g++-5
+
+    - env: COMPILER='g++-5' BUILD_TYPE='Release'
+      addons: *gcc5
 
 
 install:
