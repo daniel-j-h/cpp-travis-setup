@@ -69,7 +69,7 @@ matrix:
     - env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
       addons: &gcc48
         apt:
-          sources:
+         sources:
             - ubuntu-toolchain-r-test
             - boost-latest
          packages:
