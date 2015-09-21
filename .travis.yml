@@ -1,11 +1,13 @@
-language: c++
+language: cpp
 compiler: gcc
 os: linux
 sudo: false
+cache: ccache
 
 matrix:
   exclude:
     - compiler: gcc
+
   include:
     # Clang 3.5, release / debug
     - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
@@ -109,4 +111,5 @@ before_script:
 
 script:
   - cmake --build .
+  - ccache --show-stats
   - ./Main
