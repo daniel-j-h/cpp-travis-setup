@@ -1,8 +1,11 @@
 language: c++
+compiler: gcc
 os: linux
 sudo: false
 
 matrix:
+  exclude:
+    - compiler: gcc
   include:
     # Clang 3.5, release / debug
     - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
