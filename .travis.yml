@@ -2,7 +2,11 @@ language: cpp
 compiler: gcc
 os: linux
 sudo: false
+
+
 cache: ccache
+env: { global: { CCACHE_MAXSIZE=200M } }
+
 
 matrix:
   fast_finish: true
