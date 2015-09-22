@@ -72,19 +72,22 @@ matrix:
       - env: COMPILER='g++-5' BUILD_TYPE='Debug'
       - env: COMPILER='g++-5' BUILD_TYPE='Release'
 
+
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+
   - |
     if [ ! -d ${DEPS_DIR} ]; then
       mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
       CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
 
     else
       echo "Using cached dependency directory."
     fi
+
+  - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
