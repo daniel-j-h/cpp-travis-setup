@@ -4,7 +4,12 @@ os: linux
 sudo: false
 
 
-cache: ccache
+cache:
+  ccache
+  directories:
+    - $HOME/.ccache
+    - $DEPS_DIR
+
 env:
   global:
     - USE_CCACHE=1
