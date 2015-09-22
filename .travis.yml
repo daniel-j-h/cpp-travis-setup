@@ -136,7 +136,7 @@ install:
         CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
         mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       elif [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        brew install cmake boost
+        brew install cmake boost ccache
       fi
 
     else
@@ -147,9 +147,10 @@ install:
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - export CXX=${COMPILER}
+  - export CXX="ccache ${COMPILER}"
   - cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
 script:
   - make --jobs=2
+  - ccache --show-stats
   - ./Main
