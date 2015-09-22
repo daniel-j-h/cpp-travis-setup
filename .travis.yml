@@ -121,6 +121,6 @@ before_script:
   - env CXX="ccache ${COMPILER}" cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
 script:
-  - cmake --build .
+  - make --jobs=2
   - ccache --show-stats
   - ./Main
