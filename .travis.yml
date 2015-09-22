@@ -18,59 +18,89 @@ env:
 
 matrix:
   include:
+
     - os: linux
       compiler: clang
-      addons:
+      addons: &clang35
         apt:
           sources: ['llvm-toolchain-precise-3.5', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.5', 'libboost1.55-all-dev']
-      - env: COMPILER='clang++-3.5' BUILD_TYPE='Release'
-      - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
+      env: COMPILER='clang++-3.5' BUILD_TYPE='Release'
 
     - os: linux
       compiler: clang
-      addons:
+      addons: *clang35
+      env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
+
+
+    - os: linux
+      compiler: clang
+      addons: &clang36
         apt:
           sources: ['llvm-toolchain-precise-3.6', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.6', 'libboost1.55-all-dev']
-      - env: COMPILER='clang++-3.6' BUILD_TYPE='Debug'
-      - env: COMPILER='clang++-3.6' BUILD_TYPE='Release'
+      env: COMPILER='clang++-3.6' BUILD_TYPE='Release'
 
     - os: linux
       compiler: clang
-      addons:
+      addons: *clang36
+      env: COMPILER='clang++-3.6' BUILD_TYPE='Debug'
+
+
+    - os: linux
+      compiler: clang
+      addons: &clang37
         apt:
           sources: ['llvm-toolchain-precise-3.7', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.7', 'libboost1.55-all-dev']
-      - env: COMPILER='clang++-3.7' BUILD_TYPE='Debug'
-      - env: COMPILER='clang++-3.7' BUILD_TYPE='Release'
+      env: COMPILER='clang++-3.7' BUILD_TYPE='Release'
+
+    - os: linux
+      compiler: clang
+      addons: *clang37
+      env: COMPILER='clang++-3.7' BUILD_TYPE='Debug'
+
 
     - os: linux
       compiler: gcc
-      addons:
+      addons: &gcc48
         apt:
          sources: ['ubuntu-toolchain-r-test', 'boost-latest']
          packages: ['g++-4.8', 'libboost1.55-all-dev']
-      - env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
-      - env: COMPILER='g++-4.8' BUILD_TYPE='Release'
+      env: COMPILER='g++-4.8' BUILD_TYPE='Release'
 
     - os: linux
       compiler: gcc
-      addons:
+      addons: *gcc48
+      env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
+
+
+    - os: linux
+      compiler: gcc
+      addons: &gcc49
         apt:
           sources: ['ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['g++-4.9', 'libboost1.55-all-dev']
-      - env: COMPILER='g++-4.9' BUILD_TYPE='Debug'
-      - env: COMPILER='g++-4.9' BUILD_TYPE='Release'
+      env: COMPILER='g++-4.9' BUILD_TYPE='Release'
 
     - os: linux
       compiler: gcc
-      addons:
+      addons: *gcc49
+      env: COMPILER='g++-4.9' BUILD_TYPE='Debug'
+
+
+    - os: linux
+      compiler: gcc
+      addons: &gcc5
         apt:
           sources: ['ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['g++-5', 'libboost1.55-all-dev']
-      - env: COMPILER='g++-5' BUILD_TYPE='Debug'
-      - env: COMPILER='g++-5' BUILD_TYPE='Release'
+      env: COMPILER='g++-5' BUILD_TYPE='Release'
+
+    - os: linux
+      compiler: gcc
+      addons: *gcc5
+      env: COMPILER='g++-5' BUILD_TYPE='Debug'
 
 
 install:
