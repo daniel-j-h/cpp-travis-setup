@@ -141,9 +141,9 @@ install:
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - env CXX=${COMPILER} cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
+  - export CXX=${COMPILER}
+  - cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
 script:
   - make --jobs=2
-  - ccache --show-stats
   - ./Main
