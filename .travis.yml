@@ -107,6 +107,10 @@ matrix:
       osx_image: xcode7
       compiler: gcc
 
+    - os: osx
+      osx_image: xcode7
+      compiler: clang
+
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
