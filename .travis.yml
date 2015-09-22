@@ -6,7 +6,7 @@ cache:
   ccache: true
   directories:
     - $HOME/.ccache
-    - $DEPS_DIR
+    - ${TRAVIS_BUILD_DIR}/deps
 
 env:
   global:
