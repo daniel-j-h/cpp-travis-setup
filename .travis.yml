@@ -24,9 +24,8 @@ matrix:
         apt:
           sources: ['llvm-toolchain-precise-3.5', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.5', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='clang++-3.5' BUILD_TYPE='Release'
-        - COMPILER='clang++-3.5' BUILD_TYPE='Debug'
+      - env: - COMPILER='clang++-3.5' BUILD_TYPE='Release'
+      - env: COMPILER='clang++-3.5' BUILD_TYPE='Debug'
 
     - os: linux
       compiler: clang
@@ -34,9 +33,8 @@ matrix:
         apt:
           sources: ['llvm-toolchain-precise-3.6', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.6', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='clang++-3.6' BUILD_TYPE='Debug'
-        - COMPILER='clang++-3.6' BUILD_TYPE='Release'
+      - env: COMPILER='clang++-3.6' BUILD_TYPE='Debug'
+      - env: COMPILER='clang++-3.6' BUILD_TYPE='Release'
 
     - os: linux
       compiler: clang
@@ -44,9 +42,8 @@ matrix:
         apt:
           sources: ['llvm-toolchain-precise-3.7', 'ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['clang-3.7', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='clang++-3.7' BUILD_TYPE='Debug'
-        - COMPILER='clang++-3.7' BUILD_TYPE='Release'
+      - env: COMPILER='clang++-3.7' BUILD_TYPE='Debug'
+      - env: COMPILER='clang++-3.7' BUILD_TYPE='Release'
 
     - os: linux
       compiler: gcc
@@ -54,9 +51,8 @@ matrix:
         apt:
          sources: ['ubuntu-toolchain-r-test', 'boost-latest']
          packages: ['g++-4.8', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='g++-4.8' BUILD_TYPE='Debug'
-        - COMPILER='g++-4.8' BUILD_TYPE='Release'
+      - env: COMPILER='g++-4.8' BUILD_TYPE='Debug'
+      - env: COMPILER='g++-4.8' BUILD_TYPE='Release'
 
     - os: linux
       compiler: gcc
@@ -64,9 +60,8 @@ matrix:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['g++-4.9', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='g++-4.9' BUILD_TYPE='Debug'
-        - COMPILER='g++-4.9' BUILD_TYPE='Release'
+      - env: COMPILER='g++-4.9' BUILD_TYPE='Debug'
+      - env: COMPILER='g++-4.9' BUILD_TYPE='Release'
 
     - os: linux
       compiler: gcc
@@ -74,9 +69,8 @@ matrix:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'boost-latest']
           packages: ['g++-5', 'libboost1.55-all-dev']
-      env:
-        - COMPILER='g++-5' BUILD_TYPE='Debug'
-        - COMPILER='g++-5' BUILD_TYPE='Release'
+      - env: COMPILER='g++-5' BUILD_TYPE='Debug'
+      - env: COMPILER='g++-5' BUILD_TYPE='Release'
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
