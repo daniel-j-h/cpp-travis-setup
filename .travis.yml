@@ -121,7 +121,7 @@ install:
       fi
 
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        brew install cmake boost ccache
+        brew install cmake
       fi
 
     else
