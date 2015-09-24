@@ -155,7 +155,7 @@ install:
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - export CXX="ccache ${COMPILER}"
+  - export CXX="${COMPILER}"
   - cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
 script:
