@@ -63,6 +63,20 @@ matrix:
 
 
     - os: linux
+      compiler: clang
+      addons: &clang38
+        apt:
+          sources: ['llvm-toolchain-precise', 'ubuntu-toolchain-r-test', 'boost-latest']
+          packages: ['clang-3.8', 'libboost1.55-all-dev']
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Release'
+
+    - os: linux
+      compiler: clang
+      addons: *clang38
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug'
+
+
+    - os: linux
       compiler: gcc
       addons: &gcc48
         apt:
