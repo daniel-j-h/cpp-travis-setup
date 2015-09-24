@@ -1,6 +1,8 @@
 language: cpp
 sudo: false
 
+notifications:
+  email: false
 
 cache:
   ccache: true
