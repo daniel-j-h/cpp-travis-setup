@@ -20,6 +20,7 @@ env:
 matrix:
   include:
 
+    # 1/ Linux Clang Builds
     - os: linux
       compiler: clang
       addons: &clang35
@@ -76,6 +77,7 @@ matrix:
       env: COMPILER='clang++-3.8' BUILD_TYPE='Debug'
 
 
+    # 2/ Linux GCC Builds
     - os: linux
       compiler: gcc
       addons: &gcc48
@@ -118,6 +120,7 @@ matrix:
       env: COMPILER='g++-5' BUILD_TYPE='Debug'
 
 
+    # 3/ OSX Clang Builds
     - os: osx
       osx_image: xcode6.4
       compiler: clang
@@ -139,6 +142,12 @@ matrix:
       compiler: clang
       env: COMPILER='clang++' BUILD_TYPE='Release'
 
+
+    # 4/ Linux Sanitizer Builds
+    - os: linux
+      compiler: clang
+      addons: *clang38
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Release' CXXFLAGS="-fsanitize=address -fno-omit-frame-pointer" LIBS="-l libasan" ASAN_OPTIONS=symbolize=1 ASAN_SYMBOLIZER_PATH=$(shell which llvm-symbolizer)
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
