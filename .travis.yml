@@ -157,7 +157,6 @@ install:
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
-  - find /usr -name libclang_rt.san-x86_64.a 2>/dev/null 
   - mkdir build && cd build
   - export CXX=${COMPILER}
   - cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
