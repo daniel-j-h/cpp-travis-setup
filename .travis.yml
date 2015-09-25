@@ -147,7 +147,7 @@ matrix:
     - os: linux
       compiler: clang
       addons: *clang38
-      env: COMPILER='clang++-3.8' LINKER="clang++-3.8" BUILD_TYPE='Release' CXXFLAGS="-fsanitize=address -fno-omit-frame-pointer" ASAN_OPTIONS=symbolize=1 ASAN_SYMBOLIZER_PATH=$(which llvm-symbolizer)
+      env: COMPILER='clang++-3.8' LINKER='clang++-3.8' BUILD_TYPE='Release' CXXFLAGS='-fsanitize=address -fno-omit-frame-pointer' ASAN_OPTIONS='symbolize=1' ASAN_SYMBOLIZER_PATH="$(which llvm-symbolizer)"
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
