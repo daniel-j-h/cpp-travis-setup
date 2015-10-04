@@ -143,13 +143,6 @@ matrix:
       env: COMPILER='ccache clang++' BUILD_TYPE='Release'
 
 
-    # 4/ Linux Clang Sanitizer
-    - os: linux
-      compiler: clang
-      addons: *clang38
-      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug' CXXFLAGS='-fsanitize=address,undefined,integer -fno-omit-frame-pointer'
-
-
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
