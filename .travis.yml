@@ -82,8 +82,8 @@ matrix:
       compiler: gcc
       addons: &gcc48
         apt:
-         sources: ['ubuntu-toolchain-r-test', 'boost-latest']
-         packages: ['g++-4.8', 'libboost1.55-all-dev']
+          sources: ['ubuntu-toolchain-r-test', 'boost-latest']
+          packages: ['g++-4.8', 'libboost1.55-all-dev']
       env: COMPILER='ccache g++-4.8' BUILD_TYPE='Release'
 
     - os: linux
